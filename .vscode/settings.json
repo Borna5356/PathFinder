@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        ""
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\borna\\VS Code\\JUnit\\junit-platform-console-standalone-1.7.0-all.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.base.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx-swt.jar"
+    ]
+}
