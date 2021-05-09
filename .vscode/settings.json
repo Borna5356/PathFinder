@@ -6,6 +6,12 @@
         "lib/**/*.jar",
         "c:\\Users\\borna\\VS Code\\JUnit\\junit-platform-console-standalone-1.7.0-all.jar",
         "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.base.jar",
-        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx-swt.jar"
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx-swt.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.controls.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.fxml.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.graphics.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.media.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.swing.jar",
+        "c:\\Users\\borna\\VS Code\\javafx\\lib\\javafx.web.jar"
     ]
 }
