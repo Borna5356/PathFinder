@@ -1,12 +1,12 @@
 import java.util.Random;
 
-public class Board {
+public class Maze {
     
     private int rows;
     private int cols;
     private Square[][] board;
 
-    public Board(int rows, int cols) {
+    public Maze(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         this.board = new Square[rows][cols];
@@ -87,7 +87,7 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board board = new Board(2, 2);
+        Maze board = new Maze(2, 2);
         System.out.println(board);
         board.randomise();
         System.out.println(board);
