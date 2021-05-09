@@ -2,6 +2,6 @@ public enum SquareType {
     EMPTY,
     WALL,
     START,
-    FINISH,
+    END,
     CURRENT;
 }

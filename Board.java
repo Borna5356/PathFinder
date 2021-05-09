@@ -17,12 +17,54 @@ public class Board {
         }
     }
 
-    public void randomise() {
+    public int[] randomise() {
         Random random = new Random();
-        int row = random.nextInt(rows);
-        int col = random.nextInt(cols);
-        Square square = board[row][col];
-        square.setType(SquareType.START);
+        int startRow = random.nextInt(rows);
+        int startCol = random.nextInt(cols);
+        Square start = board[startRow][startCol];
+        start.setType(SquareType.START);
+        int endRow = random.nextInt(rows);
+        int endCol = random.nextInt(cols);
+        Square finish = board[endRow][endCol];
+        while (finish.equals(start)) {
+            endRow = random.nextInt(rows);
+            endCol = random.nextInt(cols);
+            finish = board[endRow][endCol];
+        }
+        finish.setType(SquareType.END);
+        if (startRow < endRow) {
+            for (int currentRow = startRow + 1; currentRow < endRow; currentRow += 1) {
+                Square square = board[currentRow][startCol];
+                square.setType(SquareType.EMPTY);
+            }
+        }
+        else if (startRow > endRow) {
+            for (int currentRow = startRow - 1; currentRow > endRow; currentRow -= 1) {
+                Square square = board[currentRow][startCol];
+                square.setType(SquareType.EMPTY);
+            }
+        }
+
+        if (startCol < endCol) {
+            for (int currentCol = startCol; currentCol < endCol; currentCol += 1) {
+                Square square = board[endRow][currentCol];
+                if (square.getType() == SquareType.START) {
+                    continue;
+                }
+                square.setType(SquareType.EMPTY);
+            }
+        }
+        else if (startCol > endCol) {
+            for (int currentCol = startCol; currentCol > endCol; currentCol -= 1) {
+                Square square = board[endRow][currentCol];
+                if (square.getType() == SquareType.START) {
+                    continue;
+                }
+                square.setType(SquareType.EMPTY);
+            }
+        }
+        int[] startSquare = {startRow, startCol};
+        return startSquare;
     }
 
     @Override
@@ -45,7 +87,7 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board board = new Board(5, 5);
+        Board board = new Board(2, 2);
         System.out.println(board);
         board.randomise();
         System.out.println(board);

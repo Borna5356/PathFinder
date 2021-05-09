@@ -32,8 +32,8 @@ public class Square {
                     return "[V]";
                 }
                 return "[ ]";
-            case FINISH:
-                return "[F]";
+            case END:
+                return "[E]";
             case START:
                 return "[S]";
             case WALL:
