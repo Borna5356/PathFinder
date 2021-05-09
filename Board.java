@@ -1,10 +1,12 @@
-public class Maze {
+import java.util.Random;
+
+public class Board {
     
     private int rows;
     private int cols;
     private Square[][] board;
 
-    public Maze(int rows, int cols) {
+    public Board(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         this.board = new Square[rows][cols];
@@ -16,7 +18,10 @@ public class Maze {
     }
 
     public void randomise() {
-        Square square = board[0][0];
+        Random random = new Random();
+        int row = random.nextInt(rows);
+        int col = random.nextInt(cols);
+        Square square = board[row][col];
         square.setType(SquareType.START);
     }
 
@@ -40,7 +45,7 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        Maze board = new Maze(5, 5);
+        Board board = new Board(5, 5);
         System.out.println(board);
         board.randomise();
         System.out.println(board);
