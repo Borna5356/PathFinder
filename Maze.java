@@ -17,21 +17,29 @@ public class Maze {
         }
     }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public Square getSquare(int row, int col) {
+        return board[row][col];
+    }
+
     public int[] randomise() {
         Random random = new Random();
         int startRow = random.nextInt(rows);
-        int startCol = random.nextInt(cols);
+        int startCol = 0;
         Square start = board[startRow][startCol];
         start.setType(SquareType.START);
         int endRow = random.nextInt(rows);
-        int endCol = random.nextInt(cols);
+        int endCol = cols - 1;
         Square finish = board[endRow][endCol];
-        while (finish.equals(start)) {
-            endRow = random.nextInt(rows);
-            endCol = random.nextInt(cols);
-            finish = board[endRow][endCol];
-        }
         finish.setType(SquareType.END);
+        //create a path from the start position to the end position
         if (startRow < endRow) {
             for (int currentRow = startRow + 1; currentRow < endRow; currentRow += 1) {
                 Square square = board[currentRow][startCol];
@@ -87,7 +95,7 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        Maze board = new Maze(2, 2);
+        Maze board = new Maze(10, 10);
         System.out.println(board);
         board.randomise();
         System.out.println(board);

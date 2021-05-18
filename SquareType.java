@@ -3,5 +3,6 @@ public enum SquareType {
     WALL,
     START,
     END,
-    CURRENT;
+    CURRENT,
+    VISTED;
 }
