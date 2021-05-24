@@ -1,3 +1,5 @@
+package model;
+
 public class Game {
     
     private Maze maze;

@@ -1,3 +1,5 @@
+package model;
+
 public class Square {
     
     private SquareType type;
