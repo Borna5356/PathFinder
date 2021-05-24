@@ -63,4 +63,49 @@ public class TestGame {
         assertEquals(expected, actual);
         assertEquals(expected_type, actual_type);
     }
+
+    @Test
+    public void hasWonTrue() {
+        // setup
+        Maze maze = new Maze(2, 2);
+        Game game = new Game(maze);
+        maze.random.setSeed(1);
+        game.startGame();
+        System.out.println(maze);
+        game.move("up");
+        System.out.println(maze);
+        game.move("right");
+        System.out.println(maze);
+        boolean expected = true;
+        
+        // invoke
+        boolean actual = game.hasWon();
+
+        // analzye
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hasLostTrue() {
+        // setup
+        Maze maze = new Maze(4, 4);
+        Game game = new Game(maze);
+        maze.random.setSeed(1);
+        game.startGame();
+        Square square = maze.getSquare(1, 1);
+        square.setType(SquareType.EMPTY);
+        System.out.println(maze);
+        game.move("up");
+        game.move("right");
+        game.move("up");
+        game.move("left");
+        System.out.println(maze);
+        boolean expected = true;
+        
+        // invoke
+        boolean actual = game.hasLost();
+
+        // analzye
+        assertEquals(expected, actual);
+    }    
 }

@@ -47,7 +47,8 @@ public class Game {
                 return null;
         }
         Square new_square = maze.getSquare(new_row, new_col);
-        if (new_square.getType() == SquareType.WALL || new_square.isVisited()) {
+        if (new_square.getType() == SquareType.WALL || new_square.isVisited() || 
+            new_square.getType() == SquareType.START) {
             return null;
         }
         else {
@@ -91,5 +92,15 @@ public class Game {
         else {
             return false;
         }
+    }
+
+    public boolean hasLost() {
+        String[] commands = {"up", "down", "left", "right"};
+        for (String command : commands) {
+            if (canMove(command) != null) {
+                return false;
+            }
+        }
+        return true;
     }
 }
