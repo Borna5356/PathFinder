@@ -1,19 +1,13 @@
 public class Square {
     
-    private boolean visited;
     private SquareType type;
 
     public Square() {
-        this.visited = false;
         this.type = SquareType.WALL;
     }
 
     public boolean isVisited() {
-        return visited;
-    }
-
-    public void visit() {
-        this.visited = true;
+        return type == SquareType.VISTED; 
     }
 
     public SquareType getType() {
@@ -28,10 +22,9 @@ public class Square {
     public String toString() {
         switch (type) {
             case EMPTY:
-                if (visited) {
-                    return "[V]";
-                }
                 return "[ ]";
+            case VISTED:
+                return "[V]";
             case END:
                 return "[E]";
             case START:
@@ -50,7 +43,6 @@ public class Square {
         System.out.println(square);
         square.setType(SquareType.EMPTY);
         System.out.println(square);
-        square.visit();
         System.out.println(square);
     }
 }

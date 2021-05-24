@@ -1,7 +1,8 @@
 import java.util.Random;
 
 public class Maze {
-    
+    Random random = new Random();
+
     private int rows;
     private int cols;
     private Square[][] board;
@@ -30,7 +31,6 @@ public class Maze {
     }
 
     public int[] randomise() {
-        Random random = new Random();
         int startRow = random.nextInt(rows);
         int startCol = 0;
         Square start = board[startRow][startCol];

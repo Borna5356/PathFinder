@@ -2,27 +2,23 @@ public class Game {
     
     private Maze maze;
     private Gamestate gamestate;
-    private int[] currentSquare;
-    private int row;
-    private int col;
+    private int[] current_pos;
 
     public Game(Maze maze) {
         this.maze = maze;
         this.gamestate = null;
-        this.currentSquare = null;
-        this.row = 0;
-        this.col = 0;
+        this.current_pos = null;
     }
 
     public void startGame() {
-        currentSquare = maze.randomise();
-        row = currentSquare[0];
-        col = currentSquare[1];
+        current_pos = maze.randomise();
         gamestate = Gamestate.INPROGRESS;
 
     }
 
-    public boolean move(String command) {
+    public int[] canMove(String command) {
+        int row = current_pos[0];
+        int col = current_pos[1];
         int new_row = 0;
         int new_col = 0;
         switch (command) {
@@ -47,25 +43,48 @@ public class Game {
                 break;
 
             default:
-                return false;
+                return null;
         }
 
         if ((0 > new_row  || new_row >= maze.getRows()) ||
             0 > new_col || new_col >= maze.getCols()) {
-                return false;
+                return null;
         }
         Square new_square = maze.getSquare(new_row, new_col);
-        if (new_square.getType() == SquareType.WALL || new_square.getType() == SquareType.VISTED) {
-            return false;
+        if (new_square.getType() == SquareType.WALL || new_square.isVisited()) {
+            return null;
         }
         else {
-            Square current_square = maze.getSquare(row, col);
-            if (current_square.getType() != SquareType.START) {
-                current_square.setType(SquareType.VISTED);
-                row = new_row;
-                col = new_col;
-            }
-            return true;
+            int[] new_pos = {new_row, new_col};
+            return new_pos;
         }
+    }
+
+    public boolean move(String command) {
+        int[] new_pos = canMove(command);
+        if (new_pos == null) {
+            return false;
+        }
+        int row = current_pos[0];
+        int col = current_pos[1];
+        int new_row = new_pos[0];
+        int new_col = new_pos[1];
+        Square new_square = maze.getSquare(new_row, new_col);
+        Square current_square = maze.getSquare(row, col);
+        
+        row = new_row;
+        col = new_col;
+        current_pos = new_pos;
+        if (current_square.getType() != SquareType.START) {
+            current_square.setType(SquareType.VISTED);
+        }
+        if (new_square.getType() != SquareType.END) {
+            new_square.setType(SquareType.CURRENT);
+        }
+        return true;
+    }
+
+    public void checkState() {
+        
     }
 }
