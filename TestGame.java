@@ -34,6 +34,7 @@ public class TestGame {
 
         // invoke
         boolean actual = game.move("up");
+        System.out.println(maze);
 
         // analyze
         assertEquals(expected, actual);
@@ -54,6 +55,7 @@ public class TestGame {
         
         //invoke
         game.move("up");
+        System.out.println(maze);
         SquareType actual = current_square.getType();
         SquareType actual_type = new_square.getType();
 

@@ -1,19 +1,15 @@
 public class Game {
     
     private Maze maze;
-    private Gamestate gamestate;
     private int[] current_pos;
 
     public Game(Maze maze) {
         this.maze = maze;
-        this.gamestate = null;
         this.current_pos = null;
     }
 
     public void startGame() {
         current_pos = maze.randomise();
-        gamestate = Gamestate.INPROGRESS;
-
     }
 
     public int[] canMove(String command) {
@@ -65,6 +61,7 @@ public class Game {
         if (new_pos == null) {
             return false;
         }
+
         int row = current_pos[0];
         int col = current_pos[1];
         int new_row = new_pos[0];
@@ -84,7 +81,15 @@ public class Game {
         return true;
     }
 
-    public void checkState() {
-        
+    public boolean hasWon() {
+        int row = current_pos[0];
+        int col = current_pos[1];
+        Square current_square = maze.getSquare(row, col);
+        if (current_square.getType() == SquareType.END) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
